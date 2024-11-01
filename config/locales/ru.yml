@@ -1,0 +1,72 @@
+ru:
+  title: Region posts
+  posts_empty: Постов пока нет
+  are_you_sure: Вы уверены?
+  destroy: Удалить
+  flashes:
+    session:
+      non_authorized: У Вас недостаточно прав на совершение данного действия
+  wrong_state: "Пост нельзя перевести в этот статус: %{message}"
+  state_actions:
+    reject: Отклонить
+    publish: Утвердить
+    moderate: На проверку
+  states:
+    draft: Черновик
+    rejected: Отклонен
+    published: Утвержден
+    under_moderation: На проверке
+  web:
+    posts:
+      moderate:
+        post_moderated: Отправлено на проверку
+      publish:
+        post_published: Утвержден
+      reject:
+        post_rejected: Отклонен
+      destroy:
+        post_destroyed: Удален
+      form:
+        submit: Создать статью
+      create:
+        success: Статья был успешно создана.
+      show:
+        all: Все статьи
+        you_not_authorized_html: Пожалуйста, %{href}, чтобы оставить комментарий
+        sign_in: войдите
+      new:
+        title: Новая статья
+      index:
+        title: Коллективный блог
+        search_author_name: Имя автора
+        choose_region: Регион
+        published_at_between: Дата публикации
+        search: Поиск
+        reset: Сброс
+        export: Экспорт
+    admins:
+      form:
+        submit: Создать админа
+      create:
+        success: Статья был успешно создана.
+      show:
+        all: Все статьи
+        you_not_authorized_html: Пожалуйста, %{href}, чтобы оставить комментарий
+        sign_in: войдите
+      new:
+        title: Новый админ
+        sign_up: Добавить админа
+      index:
+        title: Коллективный блог
+        likes: 'Понравилось: '
+      comments:
+        create:
+          success: Комментарий был успешно создан.
+        comment_form:
+          submit: Ответить
+          answer: Ответить
+
+  users:
+    registrations:
+      new:
+        sign_up: Регистрация

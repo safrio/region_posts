@@ -1,0 +1,50 @@
+ru:
+  activerecord:
+    models:
+      post: Статья
+      post_comment: Комментарий
+      region: Регион
+      user: Пользователь
+    attributes:
+      post:
+        title: Название
+        body: Содержание
+        region: Регион
+        images: Изображения
+        files: Файлы
+      post_comment:
+        content: комментарий
+      user:
+        email: E-mail
+        full_name: ФИО
+        type: Тип
+        region: Регион
+        password: Пароль
+        password_confirmation: Пароль еще раз
+        remember_me: Запомнить меня
+    errors:
+      models:
+        post:
+          attributes:
+            body:
+              blank: не может быть пустым
+              too_short: должно быть не менее 50 символов
+            title:
+              blank: не может быть пустым
+            region:
+              required: обязательна для заполнения
+        post_comment:
+          attributes:
+            content:
+              blank: не может быть пустым
+        user:
+          attributes:
+            email:
+              blank: не может быть пустым
+              invalid: некорректно заполнено
+              taken: уже существует
+            password:
+              blank: не может быть пустым
+              too_short: слишком короткий
+            password_confirmation:
+              confirmation: отличается

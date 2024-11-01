@@ -1,0 +1,5 @@
+- if current_user.present? && allowed_to?(:destroy?, post)
+  = link_to t('destroy'), post, data: { "turbo-method": :delete, turbo_confirm: t('are_you_sure') }, class: 'red'
+- post.aasm.permitted_transitions.each do |transition|
+  - if current_user.present? && allowed_to?("#{transition[:event]}?".to_sym, post)
+    = link_to t("state_actions.#{transition[:event]}"), url_for([transition[:event], post]), data: { "turbo-method": :patch }, class: 'ms-2'

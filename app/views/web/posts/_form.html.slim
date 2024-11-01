@@ -1,0 +1,19 @@
+= simple_form_for(@post) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    .mb-3
+      = f.input :title, required: true
+    .mb-3
+      = f.input :body, required: true, hint: (t('.minimum_length', count: @minimum_length) if @minimum_length)
+    - if current_user.admin?
+      .mb-3
+        = f.association :region, required: true, collection: regions_collection
+    .mb-3
+      = f.input :images, as: :file, input_html: { multiple: true, accept: 'image/png, image/jpeg' }
+    .mb-3
+      = f.input :files, as: :file, input_html: { multiple: true }
+
+  .form-actions.mb-3
+    = f.button :submit, t('.submit'), class: 'btn btn-success mt-4 btn-block'

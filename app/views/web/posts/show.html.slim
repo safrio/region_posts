@@ -1,0 +1,25 @@
+.pull-right = render partial: 'actions', locals: { post: @post }
+
+p = link_to t('.all'), root_path
+h5 = @post.region
+h1 = @post.title
+
+p = simple_format @post.body
+
+- if @post.images.present?
+  .d-flex.gap-05.mb-3.mt-1
+    - @post.images.map do |image|
+      = link_to url_for(image), target: '_blank' do
+        - image_tag(image.variant(resize_to_limit: [300, 200]))
+
+- if @post.files.present?
+  ul.mb-3.mt-1
+    - @post.files.map do |file|
+      li
+        = link_to url_for(file) do
+          = file.filename
+
+.d-flex.justify-content-between.mb-3.mt-1
+  .post-section
+    span.me-2 = @post.creator.email
+    span = time_ago_in_words @post.created_at

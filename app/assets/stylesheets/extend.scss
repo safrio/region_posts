@@ -1,0 +1,352 @@
+html {
+  font-size: 16px;
+}
+
+[x-cloak=""] {
+  display: none;
+}
+
+@media screen and (max-width: theme('screens.lg')) {
+  [x-cloak="lg"] { display: none; }
+}
+
+.h1 {
+  @apply text-4xl font-extrabold tracking-tighter;
+}
+
+.h2 {
+  @apply text-3xl font-extrabold tracking-tighter;
+}
+
+.h3 {
+  @apply text-3xl font-extrabold;
+}
+
+.h4 {
+  @apply text-2xl font-extrabold tracking-tight;
+}
+
+@screen md {
+  .h1 {
+    @apply text-5xl;
+  }
+
+  .h2 {
+    @apply text-4xl;
+  }
+}
+
+.btn,
+.btn-lg,
+.btn-sm,
+.btn-xs {
+  @apply font-medium text-sm inline-flex items-center justify-center border border-transparent rounded leading-5 shadow-sm transition duration-150 ease-in-out cursor-pointer;
+}
+
+.btn {
+  @apply px-3 py-2;
+}
+
+.btn-lg {
+  @apply px-4 py-3;
+}
+
+.btn-sm {
+  @apply px-2 py-1;
+}
+
+.btn-xs {
+  @apply px-2 py-0.5;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+.form-input,
+.form-textarea,
+.form-multiselect,
+.form-select,
+.form-checkbox,
+.form-radio {
+  @apply text-sm text-gray-800 bg-white border;
+}
+
+.form-input,
+.form-textarea,
+.form-multiselect,
+.form-select,
+.form-checkbox {
+  @apply rounded;
+}
+
+.form-input,
+.form-textarea,
+.form-multiselect,
+.form-select {
+  @apply leading-5 py-2 border-gray-200 hover:border-gray-300 focus:border-indigo-300 shadow-sm;
+}
+
+.form-input,
+.form-textarea {
+  @apply placeholder-gray-400;
+}
+
+.form-select {
+  @apply pr-10;
+}
+
+.form-checkbox,
+.form-radio {
+  @apply text-indigo-500 border border-gray-300;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+a[disabled="disabled"] {
+  @apply cursor-not-allowed bg-gray-100 border border-gray-200;
+  @apply bg-gray-400;
+  pointer-events: none;
+}
+
+.form-switch {
+  @apply relative select-none;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 44px;
+
+  label {
+    @apply block overflow-hidden cursor-pointer h-6 rounded-full;
+    border-radius: 9999px;
+    cursor: pointer;
+    display: block;
+    height: 24px;
+    overflow: hidden;
+    > span:first-child {
+      @apply absolute block rounded-full;
+      width: 20px;
+      height: 20px;
+      top: 2px;
+      left: 2px;
+      right: 50%;
+      transition: all .15s ease-out;
+    }
+  }
+
+  input[type="checkbox"] {
+    &:checked {
+      + label {
+        @apply bg-indigo-500;
+        > span:first-child {
+          left: 22px;
+        }
+      }
+    }
+
+    &:disabled {
+      + label {
+        @apply cursor-not-allowed bg-gray-100 border border-gray-200;
+        > span:first-child {
+          @apply bg-gray-400;
+        }
+      }
+    }
+  }
+}
+
+.form-input,
+.form-textarea,
+.form-multiselect,
+.form-select,
+.form-checkbox,
+.form-radio {
+  &:focus {
+    @apply ring-0;
+  }
+}
+
+$range-thumb-size: 36px;
+
+input[type=range] {
+  appearance: none;
+  background: #ccc;
+  border-radius: 3px;
+  height: 6px;
+  margin-top: ($range-thumb-size - 6px) * 0.5;
+  margin-bottom: ($range-thumb-size - 6px) * 0.5;
+  --thumb-size: #{$range-thumb-size};
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #000;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 .5v7L12 4zM0 4l4 3.5v-7z' fill='%23FFF' fill-rule='nonzero'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    height: $range-thumb-size;
+    width: $range-thumb-size;
+  }
+
+  &::-moz-range-thumb {
+    background-color: #000;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 .5v7L12 4zM0 4l4 3.5v-7z' fill='%23FFF' fill-rule='nonzero'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    height: $range-thumb-size;
+    width: $range-thumb-size;
+  }
+
+  &::-ms-thumb {
+    background-color: #000;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 .5v7L12 4zM0 4l4 3.5v-7z' fill='%23FFF' fill-rule='nonzero'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    height: $range-thumb-size;
+    width: $range-thumb-size;
+  }
+
+  &::-moz-focus-outer {
+    border: 0;
+  }
+}
+
+.loading-backdrop {
+  cursor: wait;
+  height: 100%;
+  opacity: .5;
+  position: fixed;
+  transition: all .35s ease-out;
+  width: 100%;
+  z-index: 100;
+}
+
+.spinner {
+  display: inline-block;
+  height: 80px;
+  left: calc(50% - 80px);
+  position: absolute;
+  top: calc(50% - 40px);
+  width: 80px;
+}
+
+.spinner div {
+  animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border: 8px solid #fff;
+  border-color: #fff transparent transparent transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: block;
+  height: 64px;
+  margin: 8px;
+  position: absolute;
+  width: 64px;
+
+  &:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.max-w-9xl {
+  max-width: 130rem;
+}
+
+.max-width-half {
+  max-width: 50%;
+}
+
+td:hover a {
+  color: #888f98;
+}
+
+.py-075 {
+  padding-top: 0.175rem;
+  padding-bottom: 0.175rem;
+}
+
+.p-5 {
+  padding: 8px;
+}
+
+.h-23 {
+  height: 2.33rem;
+}
+
+.ml-06 {
+  margin-left: 0.6rem;
+}
+
+a[data-tabs-target="tab"] {
+  outline: none;
+}
+
+tr.suspicious {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+.text-right {
+  text-align: right;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.gap-05 {
+  gap: .5rem;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+#NotiflixNotifyWrap {
+  z-index: 10000 !important;
+}
+
+.red {
+  color: red;
+}

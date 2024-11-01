@@ -1,0 +1,64 @@
+x-env: &base_env
+  - BUNDLE_JOBS=4
+  - BUNDLE_PATH=vendor/bundle
+  - BUNDLE_BIN=/bundle/bin
+  - GEM_HOME=/bundle
+  - BUNDLE_FORGET_CLI_OPTIONS=true
+  - POSTGRES_DB=region_posts_development
+  - RAILS_ENV=development
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/amd64
+    image: app:latest
+    entrypoint: /region_posts/docker-entrypoint.sh
+    command: bin/rails server -b 0.0.0.0 -p 3000
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/region_posts
+    environment: *base_env
+    tty: true
+    depends_on:
+      - database
+      - redis
+
+  frontend:
+    platform: linux/amd64
+    image: app:latest
+    entrypoint: /region_posts/docker-entrypoint.sh
+    command: bash -c "foreman start -f Procfile.dev"
+    volumes:
+      - ./:/region_posts
+    stdin_open: true
+    tty: true
+    depends_on:
+      - app
+    links:
+      - redis
+
+  database:
+    image: postgres:17
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  redis:
+    image: "redis:6.2.3-alpine"
+    command: redis-server
+    restart: unless-stopped
+
+  sidekiq:
+    image: app:latest
+    platform: linux/amd64
+    command: bundle exec sidekiq
+    volumes:
+      - ./:/region_posts
+    environment: *base_env
+    tty: true
+    depends_on:
+      - app
+      - database
+      - redis

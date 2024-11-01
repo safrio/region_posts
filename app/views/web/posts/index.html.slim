@@ -1,0 +1,54 @@
+= button_to t('web.posts.index.export'),
+        export_posts_path,
+        form: { id: 'form',
+                data: { controller: "export",
+                export_target: 'form',
+                target: '_blank',
+                turbo: false,
+                export_main_form_value: '#post_search',
+        }},
+        target: '_blank',
+        id: 'export_button',
+        method: :post,
+        turbo: false,
+        class: 'btn btn-secondary me-2 pull-right',
+        data: { export_target: 'button' }
+
+= search_form_for @q, url: root_path do |f|
+  .row.my-2
+    .col-3
+      = f.input :creator_full_name_cont, label: false, hint: t('.search_author_name')
+    .col-3
+      = f.input :region_id_eq, as: :select, collection: regions_collection, label: false, hint: t('.choose_region')
+    .col-3
+      = f.text_field :published_at_between,
+        id: 'flatpickr',
+        class: 'form-control flatpickr-datetime form-input pl-9 text-gray-500 hover:text-gray-600 font-medium focus:border-gray-300 w-full'
+      small class="form-text text-muted" = t('web.posts.index.published_at_between')
+    .col-3
+      = f.submit t('web.posts.index.search'), class: 'btn btn-primary me-2'
+      = link_to t('web.posts.index.reset'), root_path, class: 'btn btn-outline-primary'
+
+- unless @posts.present?
+  = t('posts_empty')
+
+- @posts.each do |post|
+  .card.mb-3
+    .card-header
+      = link_to post.title, post
+      .pull-right = t("states.#{post.state}")
+    .card-body.card-text = post.body.truncate_words(18)
+    .card-footer
+      div.d-flex.justify-content-between
+        div
+          span
+            = time_ago_in_words post.created_at
+          span<> |
+          span
+            = post.creator.full_name
+          span<> |
+          span
+            = post.region
+        div = render partial: 'actions', locals: { post: }
+
+= paginate @posts

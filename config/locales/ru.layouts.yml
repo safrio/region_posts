@@ -1,0 +1,12 @@
+ru:
+  layouts:
+    shared:
+      head:
+        title: Region posts
+      nav:
+        add_post: Добавить статью
+        application_name: Region posts
+        sign_in: Войти
+        sign_out: Выйти
+        register: Регистрация
+        add_admin: Добавить админа

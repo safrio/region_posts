@@ -1,0 +1,7 @@
+turbo-frame id="flashes"
+  - keys = %i[notice alert danger warning info success]
+  - flash.each do |key, notice|
+    - next unless keys.include?(key.to_sym)
+    div class="alert alert-#{key} alert-dismissible"
+      = notice
+      button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"

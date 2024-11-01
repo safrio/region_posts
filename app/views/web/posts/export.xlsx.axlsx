@@ -1,0 +1,25 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Posts") do |sheet|
+  sheet.add_row [
+    'Статус',
+    'Автор',
+    'Создан',
+    'Опубликован',
+    'Регион',
+    'Содержания',
+    'Изображения',
+    'Файлы'
+  ]
+
+  @posts.each do |post|
+    sheet.add_row [
+      post.state,
+      post.creator,
+      post.created_at,
+      post.published_at,
+      post.region,
+      post.body,
+      post.images.map { |image| image.url }.join(', '),
+      post.files.map { |file| file.url }.join(', ')]
+  end
+end

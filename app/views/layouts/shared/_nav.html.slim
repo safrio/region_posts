@@ -1,0 +1,14 @@
+.container
+  header.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-md-between.py-3.mb-4.border-bottom
+    a.d-flex.align-items-center.mb-2.mb-md-0.me-5.text-dark.text-decoration-none.fs-4(href="/") = t('.application_name')
+    ul.nav.nav-pills
+      - if user_signed_in?
+        = nav_menu_item t('.add_post'), new_post_path
+        - if current_user.admin?
+          = nav_menu_item t('.add_admin'), new_user_registration_path
+        = nav_menu_item t('.sign_out'), destroy_user_session_path, data: { "turbo-method": :delete }
+        .mt-2
+          = "(#{current_user.full_name})"
+      - else
+        = nav_menu_item t('.sign_in'), url_for([:new, current_user&.type&.to_sym || :user, :session])
+        = nav_menu_item t('.register'), url_for([:new, current_user&.type&.to_sym || :user, :registration])
