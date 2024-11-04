@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostPolicy < ApplicationPolicy
   authorize :user, allow_nil: true
 

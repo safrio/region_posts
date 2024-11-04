@@ -72,7 +72,6 @@ module Web
     end
 
     private
-
     def set_scope
       scope = PostPolicy.new(user: current_user).apply_scope(Post.all, type: :index)
       @q = scope.includes(:creator).ransack(params[:q])

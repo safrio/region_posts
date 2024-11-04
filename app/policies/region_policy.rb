@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RegionPolicy < ApplicationPolicy
   scope_for :form_select do |relation|
     return relation if user.type == 'Admin'

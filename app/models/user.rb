@@ -8,7 +8,7 @@ class User < ApplicationRecord
   belongs_to :region, optional: true
 
   validates :full_name, :type, presence: true
-  validates :region, presence: true, if: -> () { type == 'Author'}
+  validates :region, presence: true, if: -> () { type == 'Author' }
 
   def admin?
     type == 'Admin'

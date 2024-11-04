@@ -32,7 +32,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   protected
-
   def handle_respond
     return respond_with resource unless current_user&.admin?
 

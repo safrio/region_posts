@@ -29,7 +29,9 @@ services:
   frontend:
     platform: linux/amd64
     image: app:latest
-    entrypoint: /region_posts/docker-entrypoint.sh
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: bash -c "foreman start -f Procfile.dev"
     volumes:
       - ./:/region_posts
